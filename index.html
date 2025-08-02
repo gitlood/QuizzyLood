@@ -4,33 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QuizzyLood</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet"
-    />
+    <!-- Google Fonts for hero effect -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
     <style>
-      /* Glow pulse animation */
-      .icon-glow:hover {
-        animation: glowPulse 1.5s infinite;
+      /* Animated gradient background */
+      body {
+        background: linear-gradient(-45deg, #0f2027, #2c5364, #232526, #1e3c72, #0f2027);
+        background-size: 400% 400%;
+        animation: gradientBG 18s ease infinite;
       }
-      @keyframes glowPulse {
-        0%,
-        100% {
-          text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-        }
-        50% {
-          text-shadow: 0 0 15px rgba(255, 255, 255, 1);
-        }
+      @keyframes gradientBG {
+        0%,100% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
       }
-      /* Fade in for the section */
+      /* Glassmorphism cards */
+      .glass {
+        background: rgba(34, 40, 49, 0.45);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 24px;
+        border: 1.5px solid rgba(255,255,255,0.13);
+      }
+      /* Neon glow for logo and title */
+      .neon {
+        filter: drop-shadow(0 0 16px #2dfc52) drop-shadow(0 0 48px #22d3ee);
+      }
+      .logo-hero {
+        animation: logoPulse 2.5s infinite alternate cubic-bezier(.7,0,.3,1);
+        filter: drop-shadow(0 0 24px #39ff14) drop-shadow(0 0 32px #1de9b6);
+        transition: transform 0.3s cubic-bezier(.7,0,.3,1);
+      }
+      .logo-hero:hover {
+        transform: rotate(-8deg) scale(1.08);
+        filter: drop-shadow(0 0 48px #fff) drop-shadow(0 0 96px #39ff14);
+      }
+      @keyframes logoPulse {
+        from { transform: scale(1) rotate(-3deg);}
+        to { transform: scale(1.08) rotate(3deg);}
+      }
+      .neon-title {
+        text-shadow: 0 0 24px #39ff14, 0 0 42px #2dfc52;
+        color: #fff;
+        font-family: 'Orbitron', Arial, sans-serif;
+        letter-spacing: 2.5px;
+      }
+      /* Sparkle effect */
+      .sparkle {
+        position: absolute;
+        pointer-events: none;
+        width: 18px; height: 18px;
+        background: radial-gradient(circle, #fff 60%, transparent 100%);
+        opacity: 0.7;
+        animation: sparkleMove 2s infinite alternate;
+      }
+      @keyframes sparkleMove {
+        0% {transform: translateY(0);}
+        100% {transform: translateY(-20px) scale(1.2);}
+      }
+      /* Fade in and up for sections */
       .fade-in {
-        animation: fadeInUp 1s ease forwards;
+        animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1) forwards;
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(24px);
       }
       @keyframes fadeInUp {
         to {
@@ -38,112 +76,83 @@
           transform: translateY(0);
         }
       }
+      /* Glowing CTA */
+      .animate-pulse-strong {
+        animation: pulse-strong 1.6s infinite;
+      }
+      @keyframes pulse-strong {
+        0%, 100% { box-shadow: 0 0 0 0 #22c55e88; }
+        50% { box-shadow: 0 0 0 18px #22c55e22; }
+      }
+      /* Icon neon */
+      .icon-neon {
+        filter: drop-shadow(0 0 8px #39ff14);
+      }
     </style>
   </head>
-  <body
-    class="bg-gradient-to-br from-black to-gray-900 text-white p-6 font-sans"
-  >
-    <main class="min-h-screen max-w-3xl mx-auto text-center space-y-10">
-      <h1 class="text-4xl md:text-6xl font-bold mt-6">🎧 QuizzyLood</h1>
-      <p class="text-lg text-gray-300 max-w-xl mx-auto">
-        15 questions a day. No fluff. Just brain fuel.
-        Perfect for your commute, workout, walk, or morning coffee.
+  <body class="text-white p-6 font-sans min-h-screen relative overflow-x-hidden">
+    <!-- Sparkles for extra magic -->
+    <div class="sparkle" style="top: 55px; left: 60px; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 90px; right: 70px; animation-delay: 0.5s;"></div>
+    <div class="sparkle" style="top: 170px; left: 80%; animation-delay: 1.1s;"></div>
+    <main class="min-h-screen max-w-3xl mx-auto text-center space-y-10 relative z-10">
+      <!-- LOGO HERO -->
+      <div class="flex flex-col items-center justify-center fade-in" style="animation-delay:0.1s">
+        <img src="Logo.png" alt="QuizzyLood Logo" class="w-32 md:w-48 mb-2 logo-hero neon" />
+        <h1 class="text-4xl md:text-6xl font-bold neon-title">QuizzyLood</h1>
+      </div>
+      <p class="text-xl text-gray-200 max-w-xl mx-auto fade-in" style="animation-delay:0.3s">
+        15 questions a day.<br><span class="text-green-400">No fluff.</span> Just brain fuel.<br>
+        <span class="text-cyan-300">Perfect for your commute, workout, walk, or morning coffee.</span>
       </p>
 
-      <section class="fade-in">
-        <h2
-          class="text-2xl font-semibold mb-6 text-center text-white"
-          >Available On</h2
-        >
-        <div
-          class="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-center max-w-md mx-auto"
-        >
-          <a
-            href="https://open.spotify.com/show/6quGNGP5oPxcTOZ3paMn77"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Listen on Spotify"
-            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-green-600 shadow-lg shadow-green-500/50"
-          >
-            <i
-              class="fab fa-spotify text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 text-5xl icon-glow"
-            ></i>
-            <span
-              class="text-white text-lg font-semibold tracking-wide"
-              >Spotify</span
-            >
+      <section class="fade-in" style="animation-delay:0.5s">
+        <h2 class="text-2xl font-semibold mb-6 neon-title">Available On</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-center max-w-md mx-auto">
+          <a href="https://open.spotify.com/show/6quGNGP5oPxcTOZ3paMn77" target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify"
+             class="glass p-6 flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-green-600/70 shadow-lg shadow-green-500/50">
+            <i class="fab fa-spotify text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 text-5xl icon-neon icon-glow"></i>
+            <span class="text-white text-lg font-semibold tracking-wide">Spotify</span>
           </a>
-
-          <a
-            href="https://podcasts.apple.com/us/podcast/quizzy-lood/id1829530470"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Listen on Apple Podcasts"
-            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-gray-600 shadow-lg shadow-gray-400/50"
-          >
-            <i
-              class="fab fa-apple text-gray-200 text-5xl icon-glow"
-            ></i>
-            <span
-              class="text-white text-lg font-semibold tracking-wide"
-              >Apple Podcasts</span
-            >
+          <a href="https://podcasts.apple.com/us/podcast/quizzy-lood/id1829530470" target="_blank" rel="noopener noreferrer" aria-label="Listen on Apple Podcasts"
+             class="glass p-6 flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-gray-600/70 shadow-lg shadow-gray-400/50">
+            <i class="fab fa-apple text-gray-200 text-5xl icon-neon icon-glow"></i>
+            <span class="text-white text-lg font-semibold tracking-wide">Apple Podcasts</span>
           </a>
-
-          <a
-            href="https://www.youtube.com/playlist?list=PLTbAmISxU_n1ypqu_8fL4BL1HO-gIsuim"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch on YouTube"
-            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-red-600 shadow-lg shadow-red-500/50"
-          >
-            <i
-              class="fab fa-youtube text-red-500 text-5xl icon-glow"
-            ></i>
-            <span
-              class="text-white text-lg font-semibold tracking-wide"
-              >YouTube</span
-            >
+          <a href="https://www.youtube.com/playlist?list=PLTbAmISxU_n1ypqu_8fL4BL1HO-gIsuim" target="_blank" rel="noopener noreferrer" aria-label="Watch on YouTube"
+             class="glass p-6 flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-red-600/70 shadow-lg shadow-red-500/50">
+            <i class="fab fa-youtube text-red-500 text-5xl icon-neon icon-glow"></i>
+            <span class="text-white text-lg font-semibold tracking-wide">YouTube</span>
           </a>
-
-          <a
-            href="https://music.amazon.com/podcasts/39859b1e-10d2-415e-81c2-440d93e19e20"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Listen on Amazon Music"
-            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-yellow-500 shadow-lg shadow-yellow-400/50"
-          >
-            <i
-              class="fab fa-amazon text-yellow-400 text-5xl icon-glow"
-            ></i>
-            <span
-              class="text-white text-lg font-semibold tracking-wide"
-              >Amazon Music</span
-            >
+          <a href="https://music.amazon.com/podcasts/39859b1e-10d2-415e-81c2-440d93e19e20" target="_blank" rel="noopener noreferrer" aria-label="Listen on Amazon Music"
+             class="glass p-6 flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-yellow-500/70 shadow-lg shadow-yellow-400/50">
+            <i class="fab fa-amazon text-yellow-400 text-5xl icon-neon icon-glow"></i>
+            <span class="text-white text-lg font-semibold tracking-wide">Amazon Music</span>
           </a>
         </div>
       </section>
 
-      <a
-        href="https://open.spotify.com/show/6quGNGP5oPxcTOZ3paMn77"
-        class="inline-block bg-green-500 text-black text-lg px-8 py-4 rounded-2xl shadow-xl hover:bg-green-600 transition"
-        >▶️ Listen Now</a
-      >
+      <a href="https://open.spotify.com/show/6quGNGP5oPxcTOZ3paMn77"
+         class="inline-block bg-green-500 text-black text-lg px-10 py-5 rounded-2xl shadow-xl hover:bg-green-600 transition animate-pulse-strong fade-in"
+         style="animation-delay:0.8s">▶️ Listen Now</a>
 
-      <section class="mt-16 space-y-4">
-        <h2 class="text-3xl font-semibold">📢 Partner with Us</h2>
-        <p class="text-gray-400 max-w-xl mx-auto">
-          Join our growing global audience and advertise your brand on QuizzyLood.
-          Daily listeners. Daily impact.
+      <section class="mt-16 space-y-4 fade-in" style="animation-delay:1.1s">
+        <h2 class="text-3xl font-semibold neon-title">📢 Partner with Us</h2>
+        <p class="text-gray-200 max-w-xl mx-auto">
+          Join our growing global audience and advertise your brand on <span class="text-green-300">QuizzyLood</span>.<br>
+          <span class="text-cyan-400">Daily listeners. Daily impact.</span>
         </p>
-        <a
-          href="mailto:loodquiz@gmail.com"
-          class="inline-block text-white border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition"
-          >Become a Sponsor</a
-        >
+        <a href="mailto:loodquiz@gmail.com"
+           class="inline-block text-white border border-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition font-bold tracking-wider"
+        >Become a Sponsor</a>
       </section>
 
-      <footer class="mt-16 text-sm text-gray-500">
+      <footer class="mt-16 text-sm text-gray-400 flex flex-col items-center space-y-2 fade-in" style="animation-delay:1.3s">
+        <div class="flex space-x-4 mb-2">
+          <a href="https://twitter.com/" target="_blank" aria-label="Twitter" class="hover:text-blue-400"><i class="fab fa-twitter text-lg"></i></a>
+          <a href="https://instagram.com/" target="_blank" aria-label="Instagram" class="hover:text-pink-400"><i class="fab fa-instagram text-lg"></i></a>
+          <a href="https://facebook.com/" target="_blank" aria-label="Facebook" class="hover:text-blue-600"><i class="fab fa-facebook text-lg"></i></a>
+        </div>
         &copy; 2025 QuizzyLood — All rights reserved
       </footer>
     </main>
