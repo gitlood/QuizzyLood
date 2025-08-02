@@ -4,10 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QuizzyLood</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Glow pulse animation */
+      .icon-glow:hover {
+        animation: glowPulse 1.5s infinite;
+      }
+      @keyframes glowPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+        50% {
+          text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+        }
+      }
+      /* Fade in for the section */
+      .fade-in {
+        animation: fadeInUp 1s ease forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-br from-black to-gray-900 text-white p-6 font-sans">
+  <body
+    class="bg-gradient-to-br from-black to-gray-900 text-white p-6 font-sans"
+  >
     <main class="min-h-screen max-w-3xl mx-auto text-center space-y-10">
       <h1 class="text-4xl md:text-6xl font-bold mt-6">🎧 QuizzyLood</h1>
       <p class="text-lg text-gray-300 max-w-xl mx-auto">
@@ -15,60 +50,97 @@
         Perfect for your commute, workout, walk, or morning coffee.
       </p>
 
-      <section>
-  <h2 class="text-2xl font-semibold mb-6 text-center text-white">Available On</h2>
-  <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-center max-w-md mx-auto">
-    
-    <a href="https://open.spotify.com/show/6quGNGP5oPxcTOZ3paMn77" target="_blank" rel="noopener noreferrer"
-       class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 
-              transform transition duration-300 hover:scale-110 hover:bg-green-600 shadow-lg shadow-green-500/50">
-      <i class="fab fa-spotify text-green-400 text-5xl"></i>
-      <span class="text-white text-lg font-semibold tracking-wide">Spotify</span>
-    </a>
-    
-    <a href="https://podcasts.apple.com/us/podcast/quizzy-lood/id1829530470" target="_blank" rel="noopener noreferrer"
-       class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 
-              transform transition duration-300 hover:scale-110 hover:bg-gray-600 shadow-lg shadow-gray-400/50">
-      <i class="fab fa-apple text-gray-200 text-5xl"></i>
-      <span class="text-white text-lg font-semibold tracking-wide">Apple Podcasts</span>
-    </a>
-    
-    <a href="https://www.youtube.com/playlist?list=PLTbAmISxU_n1ypqu_8fL4BL1HO-gIsuim" target="_blank" rel="noopener noreferrer"
-       class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 
-              transform transition duration-300 hover:scale-110 hover:bg-red-600 shadow-lg shadow-red-500/50">
-      <i class="fab fa-youtube text-red-500 text-5xl"></i>
-      <span class="text-white text-lg font-semibold tracking-wide">YouTube</span>
-    </a>
-    
-    <a href="https://music.amazon.com/podcasts/39859b1e-10d2-415e-81c2-440d93e19e20" target="_blank" rel="noopener noreferrer"
-       class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 
-              transform transition duration-300 hover:scale-110 hover:bg-yellow-500 shadow-lg shadow-yellow-400/50">
-      <i class="fab fa-amazon text-yellow-400 text-5xl"></i>
-      <span class="text-white text-lg font-semibold tracking-wide">Amazon Music</span>
-    </a>
+      <section class="fade-in">
+        <h2
+          class="text-2xl font-semibold mb-6 text-center text-white"
+          >Available On</h2
+        >
+        <div
+          class="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-center max-w-md mx-auto"
+        >
+          <a
+            href="https://open.spotify.com/show/6quGNGP5oPxcTOZ3paMn77"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Listen on Spotify"
+            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-green-600 shadow-lg shadow-green-500/50"
+          >
+            <i
+              class="fab fa-spotify text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 text-5xl icon-glow"
+            ></i>
+            <span
+              class="text-white text-lg font-semibold tracking-wide"
+              >Spotify</span
+            >
+          </a>
 
-  </div>
-</section>
+          <a
+            href="https://podcasts.apple.com/us/podcast/quizzy-lood/id1829530470"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Listen on Apple Podcasts"
+            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-gray-600 shadow-lg shadow-gray-400/50"
+          >
+            <i
+              class="fab fa-apple text-gray-200 text-5xl icon-glow"
+            ></i>
+            <span
+              class="text-white text-lg font-semibold tracking-wide"
+              >Apple Podcasts</span
+            >
+          </a>
 
+          <a
+            href="https://www.youtube.com/playlist?list=PLTbAmISxU_n1ypqu_8fL4BL1HO-gIsuim"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch on YouTube"
+            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-red-600 shadow-lg shadow-red-500/50"
+          >
+            <i
+              class="fab fa-youtube text-red-500 text-5xl icon-glow"
+            ></i>
+            <span
+              class="text-white text-lg font-semibold tracking-wide"
+              >YouTube</span
+            >
+          </a>
+
+          <a
+            href="https://music.amazon.com/podcasts/39859b1e-10d2-415e-81c2-440d93e19e20"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Listen on Amazon Music"
+            class="bg-gray-800 p-6 rounded-3xl flex flex-col items-center space-y-3 transform transition duration-300 hover:scale-110 hover:bg-yellow-500 shadow-lg shadow-yellow-400/50"
+          >
+            <i
+              class="fab fa-amazon text-yellow-400 text-5xl icon-glow"
+            ></i>
+            <span
+              class="text-white text-lg font-semibold tracking-wide"
+              >Amazon Music</span
+            >
+          </a>
+        </div>
+      </section>
 
       <a
         href="https://open.spotify.com/show/6quGNGP5oPxcTOZ3paMn77"
         class="inline-block bg-green-500 text-black text-lg px-8 py-4 rounded-2xl shadow-xl hover:bg-green-600 transition"
+        >▶️ Listen Now</a
       >
-        ▶️ Listen Now
-      </a>
 
       <section class="mt-16 space-y-4">
         <h2 class="text-3xl font-semibold">📢 Partner with Us</h2>
         <p class="text-gray-400 max-w-xl mx-auto">
-          Join our growing global audience and advertise your brand on QuizzyLood. Daily listeners. Daily impact.
+          Join our growing global audience and advertise your brand on QuizzyLood.
+          Daily listeners. Daily impact.
         </p>
         <a
           href="mailto:loodquiz@gmail.com"
           class="inline-block text-white border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition"
+          >Become a Sponsor</a
         >
-          Become a Sponsor
-        </a>
       </section>
 
       <footer class="mt-16 text-sm text-gray-500">
